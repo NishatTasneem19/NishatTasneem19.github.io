@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishat Tasneem Ryan — Software Engineering Student</title>
+<meta name="description" content="Portfolio of Nishat Tasneem Ryan — Android development, machine learning, and network security projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F6F4;
+    --paper-raised:#FFFFFF;
+    --ink:#14181C;
+    --muted:#5C6670;
+    --line:#DCE0E1;
+    --accent:#2657D9;
+    --accent-ink:#12308A;
+    --violet:#6D5BD0;
+    --teal:#0E9488;
+    --amber:#C9752C;
+    --radius:3px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--accent); color:#fff; }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    line-height:1.1;
+    margin:0;
+  }
+
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.8rem;
+    letter-spacing:0.01em;
+  }
+
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,246,244,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:760px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-inner .brand{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--ink);
+  }
+  .nav-links{ display:flex; gap:24px; }
+  .nav-links a{ color:var(--muted); font-size:0.92rem; position:relative; padding-bottom:2px; }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-3px; width:0; height:1.5px;
+    background:var(--accent); transition:width 0.25s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); text-decoration:none; }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:4px; }
+  .nav-toggle span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; }
+
+  @media (max-width:640px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--paper); border-bottom:1px solid var(--line);
+      flex-direction:column; padding:12px 28px 20px; gap:14px;
+      display:none;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:-20% -10% auto -10%; height:640px;
+    background:
+      radial-gradient(480px 320px at 12% 10%, rgba(38,87,217,0.14), transparent 70%),
+      radial-gradient(420px 300px at 78% 0%, rgba(109,91,208,0.13), transparent 70%),
+      radial-gradient(360px 260px at 55% 35%, rgba(14,148,136,0.10), transparent 70%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .hero .wrap{ position:relative; z-index:1; }
+  .hero .eyebrow{
+    color:var(--accent); font-weight:600; margin-bottom:14px; display:inline-flex;
+    align-items:center; gap:8px; background:rgba(38,87,217,0.08);
+    padding:5px 12px 5px 10px; border-radius:100px; font-size:0.78rem;
+  }
+  .hero .eyebrow .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--teal);
+    box-shadow:0 0 0 3px rgba(14,148,136,0.18);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.5vw, 3.7rem);
+    letter-spacing:-0.01em;
+    background:linear-gradient(100deg, var(--ink) 55%, var(--accent-ink));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:var(--ink);
+  }
+  .hero .role{
+    margin-top:14px; color:var(--muted); font-size:1.15rem; max-width:520px;
+  }
+  .hero .pitch{
+    margin-top:22px; max-width:520px; color:var(--ink); font-size:1.02rem;
+  }
+  .hero .cta-row{
+    margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:var(--radius);
+    font-family:'Inter',sans-serif; font-size:0.92rem; font-weight:600;
+    border:1px solid var(--ink); color:var(--ink);
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); text-decoration:none; transform:translateY(-2px); }
+  .btn.primary{
+    background:linear-gradient(100deg, var(--accent), var(--accent-ink));
+    border-color:var(--accent); color:#fff;
+    box-shadow:0 10px 24px rgba(38,87,217,0.28);
+  }
+  .btn.primary:hover{ box-shadow:0 14px 30px rgba(38,87,217,0.36); transform:translateY(-2px); }
+
+  .hero-graphic{
+    position:absolute;
+    right:-60px; top:40px;
+    width:340px; height:340px;
+    opacity:0.9;
+    pointer-events:none;
+  }
+  @media (max-width:900px){ .hero-graphic{ display:none; } }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:60px 0; border-top:1px solid var(--line); position:relative; }
+  section .kicker, footer .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem; color:var(--accent); margin-bottom:10px;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  section .kicker::before, footer .kicker::before{
+    content:''; width:16px; height:1.5px; background:var(--accent);
+  }
+  section h2{ font-size:1.8rem; margin-bottom:24px; }
+
+  /* ---------- About ---------- */
+  .about p{ max-width:600px; color:var(--ink); }
+  .about p + p{ margin-top:14px; }
+
+  /* ---------- Skills ---------- */
+  .skill-grid{
+    display:grid; grid-template-columns:1fr; gap:18px;
+  }
+  .skill-row{
+    display:grid; grid-template-columns:170px 1fr; gap:16px; align-items:baseline;
+    padding:10px 0; border-bottom:1px solid var(--line);
+  }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-row .label{ color:var(--muted); font-size:0.88rem; }
+  .skill-row .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem;
+    padding:4px 9px; background:var(--paper-raised);
+    border:1px solid var(--line); border-radius:var(--radius); color:var(--ink);
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .tag:hover{ transform:translateY(-1px); box-shadow:0 4px 10px rgba(20,24,28,0.08); }
+  @media (max-width:560px){
+    .skill-row{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  /* ---------- Projects ---------- */
+  .project{
+    padding:30px 24px 30px 26px; margin-bottom:20px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-left:4px solid var(--proj-color, var(--accent));
+    border-radius:var(--radius);
+    transition:transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .project:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 32px rgba(20,24,28,0.08);
+  }
+  .project:last-child{ margin-bottom:0; }
+  .project-head{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;
+  }
+  .project h3{ font-size:1.3rem; }
+  .project .team-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem;
+    color:var(--proj-color, var(--muted)); background:color-mix(in srgb, var(--proj-color, var(--muted)) 10%, transparent);
+    border:1px solid color-mix(in srgb, var(--proj-color, var(--line)) 40%, var(--line));
+    padding:4px 10px;
+    border-radius:100px; white-space:nowrap; margin-top:4px; font-weight:500;
+  }
+  .project .role-line{
+    margin-top:8px; color:var(--proj-color, var(--accent-ink)); font-size:0.92rem; font-weight:600;
+  }
+  .project ul{
+    margin:14px 0 0; padding-left:20px; color:var(--ink);
+  }
+  .project ul li + li{ margin-top:8px; }
+  .project ul li::marker{ color:var(--proj-color, var(--accent)); }
+  .project .tags{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:18px;
+  }
+  .project .tags .tag{ border-color:color-mix(in srgb, var(--proj-color, var(--line)) 35%, var(--line)); }
+  .project .links{
+    margin-top:18px; display:flex; gap:18px; font-size:0.9rem;
+  }
+  .project .links a{
+    display:inline-flex; align-items:center; gap:6px; font-weight:600;
+    color:var(--proj-color, var(--accent));
+  }
+
+  /* ---------- Education ---------- */
+  .edu-item{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:14px 4px; border-bottom:1px solid var(--line); flex-wrap:wrap;
+    transition:padding-left 0.2s ease, background 0.2s ease;
+    border-radius:var(--radius);
+  }
+  .edu-item:hover{ padding-left:12px; background:rgba(38,87,217,0.04); }
+  .edu-item:last-child{ border-bottom:none; }
+  .edu-item .school{ font-weight:600; }
+  .edu-item .degree{ color:var(--muted); font-size:0.92rem; }
+  .edu-item .when{ color:var(--muted); font-size:0.88rem; white-space:nowrap; }
+
+  /* ---------- Contact / Footer ---------- */
+  footer{
+    padding:64px 0 48px; border-top:1px solid var(--line);
+  }
+  footer h2{ font-size:1.6rem; margin-bottom:16px; }
+  footer p{ color:var(--muted); max-width:480px; }
+  .contact-list{ margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+  .contact-list a{ color:var(--ink); font-weight:600; }
+  .contact-list .k{ color:var(--muted); font-size:0.85rem; display:inline-block; width:90px; }
+  .copy-btn{
+    font-family:'JetBrains Mono', monospace; font-size:0.72rem;
+    margin-left:10px; padding:3px 9px; border-radius:100px;
+    border:1px solid var(--line); background:var(--paper-raised); color:var(--muted);
+    cursor:pointer; transition:all 0.15s ease;
+  }
+  .copy-btn:hover{ border-color:var(--accent); color:var(--accent); }
+  .footer-note{ margin-top:48px; color:var(--muted); font-size:0.82rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="brand">Nishat Tasneem Ryan</span>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span>Open to opportunities · Dhaka, Bangladesh</span>
+    <h1>Nishat Tasneem Ryan</h1>
+    <p class="role">Software Engineering student — Android development, machine learning, and network security.</p>
+    <p class="pitch">I like taking a project from a rough idea to something that actually runs — training a risk-prediction model and shipping it on-device, or standing up a certificate authority from scratch.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=nishattasneem119@gmail.com" target="_blank" rel="noopener">Email me</a>
+      <a class="btn" href="https://github.com/NishatTasneem19" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+
+  <svg class="hero-graphic" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#2657D9" stroke-width="1.2" opacity="0.55">
+      <line x1="60" y1="70" x2="180" y2="40"/>
+      <line x1="180" y1="40" x2="280" y2="90"/>
+      <line x1="60" y1="70" x2="90" y2="180"/>
+      <line x1="180" y1="40" x2="150" y2="170"/>
+      <line x1="280" y1="90" x2="250" y2="200"/>
+      <line x1="90" y1="180" x2="150" y2="170"/>
+      <line x1="150" y1="170" x2="250" y2="200"/>
+      <line x1="90" y1="180" x2="120" y2="280"/>
+      <line x1="250" y1="200" x2="210" y2="290"/>
+      <line x1="120" y1="280" x2="210" y2="290"/>
+    </g>
+    <g>
+      <circle cx="60" cy="70" r="4.5" fill="#6D5BD0"/>
+      <circle cx="180" cy="40" r="4.5" fill="#14181C"/>
+      <circle cx="280" cy="90" r="4.5" fill="#0E9488"/>
+      <circle cx="90" cy="180" r="4.5" fill="#14181C"/>
+      <circle cx="150" cy="170" r="6" fill="#2657D9"/>
+      <circle cx="250" cy="200" r="4.5" fill="#C9752C"/>
+      <circle cx="120" cy="280" r="4.5" fill="#14181C"/>
+      <circle cx="210" cy="290" r="4.5" fill="#14181C"/>
+    </g>
+  </svg>
+</header>
+
+<section id="about">
+  <div class="wrap about reveal">
+    <span class="kicker">01 — About</span>
+    <h2>Studying CSE, building things that ship</h2>
+    <p>I'm a Computer Science &amp; Engineering student at East West University. Most of what's below was built with a small team of coursemates — for each project, I've been specific about the part that was mine.</p>
+    <p>My work spans training and deploying ML models on-device, building Android apps end to end, and standing up Linux network infrastructure with a working certificate authority. I'm looking for a software engineering role where I can keep doing that kind of hands-on, full-pipeline work.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <span class="kicker">02 — Skills</span>
+    <h2>Technical skills</h2>
+    <div class="skill-grid">
+      <div class="skill-row">
+        <span class="label">Languages</span>
+        <div class="tags">
+          <span class="tag">Java</span><span class="tag">Python</span><span  class="tag">PHP</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">XML</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="label">Machine learning</span>
+        <div class="tags">
+          <span class="tag">Scikit-learn</span><span class="tag">CatBoost</span><span class="tag">XGBoost</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">ONNX</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="label">ML algorithms</span>
+        <div class="tags">
+          <span class="tag">Logistic Regression</span><span class="tag">Decision Tree</span><span class="tag">Random Forest</span><span class="tag">Extra Trees</span><span class="tag">Naive Bayes</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="label">Mobile</span>
+        <div class="tags">
+          <span class="tag">Android Studio</span><span class="tag">Android (Java)</span><span class="tag">XML layouts</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="label">Web</span>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">PHP</span><span class="tag">XAMPP</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="label">Tools</span>
+        <div class="tags">
+          <span class="tag">GitHub</span><span class="tag">Linux</span><span class="tag">VS Code</span><span class="tag">Google Colab</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="label">CS fundamentals</span>
+        <div class="tags">
+          <span class="tag">OOP</span><span class="tag">Data Structures &amp; Algorithms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <span class="kicker">03 — Projects</span>
+    <h2>Selected work</h2>
+
+    <article class="project reveal" style="--proj-color:var(--violet);">
+      <div class="project-head">
+        <h3>Student Life Companion <span style="color:var(--muted); font-weight:400;">— EduTrinity</span></h3>
+        <span class="team-tag">Team project</span>
+      </div>
+      <p class="role-line">My part: CGPA module &amp; spiritual content module</p>
+      <ul>
+        <li>Built the CGPA calculator, grade mapping, semester summaries, and a target-CGPA predictor that works out the grades needed to reach a goal CGPA.</li>
+        <li>Built a multi-faith spiritual content module — bookmarking and reading for the Quran, Bible, Gita, and Buddhist scriptures (Tripitaka, Vinaya, Abhidhamma, Sutta), a daily-rotating Quran verse, and a digital Tasbeeh counter.</li>
+        <li>Part of a larger collaborative Android app that also includes mood tracking, sleep tracking, task/diary management, and expense tracking.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Java</span><span class="tag">Android Studio</span><span class="tag">XML</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/NishatTasneem19/Student-Life-Companion-APP-EduTrinity" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </article>
+
+    <article class="project reveal" style="--proj-color:var(--teal);">
+      <div class="project-head">
+        <h3>Sleep Apnea &amp; Insomnia Risk Prediction</h3>
+        <span class="team-tag">Team project</span>
+      </div>
+      <p class="role-line">My part: ML pipeline, model selection &amp; on-device integration</p>
+      <ul>
+        <li>Built end-to-end ML pipelines for sleep-apnea and insomnia risk screening — data preprocessing, feature selection, scaling, training, and evaluation.</li>
+        <li>Trained and compared multiple algorithms (Logistic Regression, Decision Tree, Random Forest, Extra Trees, Naive Bayes, CatBoost, XGBoost) to find the best-performing model for probability-based risk output.</li>
+        <li>Converted both models to ONNX and wrote the on-device inference integration code, used inside a broader collaborative Android health-tracking app.</li>
+         <li>Integrated wearable device sensor data for real-time risk assessment.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">CatBoost</span><span class="tag">XGBoost</span><span class="tag">ONNX</span><span class="tag">Java</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/NishatTasneem19/Sleep-disorder-detection" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </article>
+
+    <article class="project reveal" style="--proj-color:var(--amber);">
+      <div class="project-head">
+        <h3>CA Infrastructure &amp; Network Security System</h3>
+        <span class="team-tag">University project</span>
+      </div>
+      <ul>
+        <li>Set up a Linux-based network environment with Apache2, BIND9 DNS, OpenSSH, a firewall, and an intrusion detection system (IDS).</li>
+        <li>Built a certificate authority hierarchy — Root CA, and DV/OV/EV Sub-CAs — with certificate issuance and revocation using OpenSSL.</li>
+        <li>Developed a web-based CA management application with user authentication, certificate requests, administrator controls, and ownership-based authorization.</li>
+        <li>Ran security testing and network analysis with Nmap and Wireshark.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Linux</span><span class="tag">Apache2</span><span class="tag">BIND9</span><span class="tag">OpenSSL</span><span class="tag">Nmap</span><span class="tag">Wireshark</span><span >
+      </div>
+      <div class="links">
+        <a href="https://github.com/NishatTasneem19/ca-network-security-system" target="_blank" rel="noopener">View on GitHub ↗</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap reveal">
+    <span class="kicker">04 — Education</span>
+    <h2>Education</h2>
+    <div class="edu-item">
+      <div>
+        <div class="school">East West University, Aftabnagar</div>
+        <div class="degree">B.Sc. in Computer Science &amp; Engineering</div>
+      </div>
+      <div class="when">Expected 2027</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="school">Ideal School &amp; College, Motijheel</div>
+        <div class="degree">Higher Secondary Certificate (HSC) — GPA 5.00</div>
+      </div>
+      <div class="when">2020</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="school">Ideal School &amp; College, Banasree</div>
+        <div class="degree">Secondary School Certificate (SSC) — GPA 5.00</div>
+      </div>
+      <div class="when">2018</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap reveal">
+    <span class="kicker">05 — Contact</span>
+    <h2>Get in touch</h2>
+    <p>Open to software engineering internships and entry-level roles — happy to talk about any of the projects above in more detail.</p>
+    <div class="contact-list">
+      <div><span class="k mono">Email</span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=nishattasneem119@gmail.com" target="_blank" rel="noopener">nishattasneem119@gmail.com</a> <button class="copy-btn" data-copy="nishattasneem119@gmail.com" aria-label="Copy email">copy</button></div>
+      <div><span class="k mono">Phone</span><a href="tel:+8801707544721">+880 1707544721</a></div>
+      <div><span class="k mono">GitHub</span><a href="https://github.com/NishatTasneem19" target="_blank" rel="noopener">github.com/NishatTasneem19</a></div>
+      <div><span class="k mono">Location</span><span style="color:var(--ink); font-weight:600;">Dhaka, Bangladesh</span></div>
+    </div>
+    <p class="footer-note">© 2026 Nishat Tasneem Ryan. Built by hand, deployed on GitHub Pages.</p>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('in'), i * 60);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(btn.dataset.copy).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'copied!';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
